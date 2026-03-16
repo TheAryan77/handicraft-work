@@ -1,38 +1,132 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# =============================================================================
+# SN HandCrafts — Monorepo .gitignore
+# Covers: Turborepo, Next.js, Node/Express API, Prisma, TypeScript
+# =============================================================================
 
+# -----------------------------------------------------------------------------
 # Dependencies
-node_modules
+# -----------------------------------------------------------------------------
+node_modules/
 .pnp
 .pnp.js
+.yarn/install-state.gz
 
-# Local env files
+# -----------------------------------------------------------------------------
+# Build Outputs
+# -----------------------------------------------------------------------------
+dist/
+build/
+out/
+.next/
+.nuxt/
+.output/
+storybook-static/
+
+# -----------------------------------------------------------------------------
+# TypeScript
+# -----------------------------------------------------------------------------
+*.tsbuildinfo
+next-env.d.ts
+
+# -----------------------------------------------------------------------------
+# Turbo
+# -----------------------------------------------------------------------------
+.turbo/
+
+# -----------------------------------------------------------------------------
+# Prisma
+# -----------------------------------------------------------------------------
+# Generated Prisma client (regenerate with `prisma generate`)
+**/generated/prisma/
+**/prisma/generated/
+# Prisma migration lock — keep migrations/ but not shadow db artifacts
+*.db
+*.db-journal
+*.sqlite
+*.sqlite-journal
+
+# -----------------------------------------------------------------------------
+# Environment Variables — NEVER commit secrets
+# -----------------------------------------------------------------------------
 .env
 .env.local
+.env.development
 .env.development.local
+.env.test
 .env.test.local
+.env.staging
+.env.production
 .env.production.local
+# Allow example/template env files to be committed
+!.env.example
+!.env.template
+!*.env.example
 
-# Testing
-coverage
-
-# Turbo
-.turbo
-
-# Vercel
-.vercel
-
-# Build Outputs
-.next/
-out/
-build
-dist
-
-
-# Debug
+# -----------------------------------------------------------------------------
+# Logs
+# -----------------------------------------------------------------------------
+logs/
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
 
-# Misc
+# -----------------------------------------------------------------------------
+# Testing & Coverage
+# -----------------------------------------------------------------------------
+coverage/
+.nyc_output/
+test-results/
+playwright-report/
+playwright/.cache/
+
+# -----------------------------------------------------------------------------
+# Editor / IDE
+# -----------------------------------------------------------------------------
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+
+# -----------------------------------------------------------------------------
+# macOS
+# -----------------------------------------------------------------------------
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# -----------------------------------------------------------------------------
+# Docker
+# -----------------------------------------------------------------------------
+# Don't ignore docker-compose files, but ignore override/local configs
+docker-compose.override.yml
+docker-compose.local.yml
+
+# -----------------------------------------------------------------------------
+# Deployment / Cloud
+# -----------------------------------------------------------------------------
+.vercel/
+.netlify/
+
+# -----------------------------------------------------------------------------
+# Misc
+# -----------------------------------------------------------------------------
 *.pem
+*.key
+*.cert
+*.p12
+.cache/
+tmp/
+temp/
