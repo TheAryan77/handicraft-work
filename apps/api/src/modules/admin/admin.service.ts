@@ -1,4 +1,4 @@
-import { prisma, $Enums } from "db";
+import { prisma, OrderStatus } from "db";
 import { Request } from "express";
 import { createError } from "../../middlewares/errorHandler";
 import { getPagination, buildMeta } from "../../utils/pagination";
@@ -116,7 +116,7 @@ export const listAdminOrders = async (req: Request) => {
     const { page, limit, skip } = getPagination(req);
     const { status } = req.query as Record<string, string>;
 
-    const where = status ? { status: status as $Enums.OrderStatus } : {};
+    const where = status ? { status: status as OrderStatus } : {};
 
     const [orders, total] = await Promise.all([
         prisma.order.findMany({
@@ -137,7 +137,7 @@ export const listAdminOrders = async (req: Request) => {
     return { orders, meta: buildMeta(page, limit, total) };
 };
 
-export const updateAdminOrderStatus = async (id: string, status: $Enums.OrderStatus) => {
+export const updateAdminOrderStatus = async (id: string, status: OrderStatus) => {
     const order = await prisma.order.findUnique({ where: { id } });
     if (!order) {
         throw createError("Order not found", 404);

@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "Shared Prisma database client for the SN HandCrafts monorepo",
   "license": "ISC",
-  "main": "./index.ts",
-  "types": "./index.ts",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "exports": {
-    ".": "./index.ts"
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    }
   },
   "scripts": {
     "db:generate": "prisma generate",

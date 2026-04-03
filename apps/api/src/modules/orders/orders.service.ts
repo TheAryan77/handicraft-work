@@ -1,4 +1,4 @@
-import { prisma, Prisma, Product, $Enums } from "db";
+import { prisma, Prisma, Product, OrderStatus } from "db";
 import { Request } from "express";
 import { createError } from "../../middlewares/errorHandler";
 import { getPagination, buildMeta } from "../../utils/pagination";
@@ -151,7 +151,7 @@ export const cancelOrder = async (orderId: string, userId: string) => {
 export const listAllOrders = async (req: Request) => {
     const { page, limit, skip } = getPagination(req);
     const { status } = req.query as Record<string, string>;
-    const where = status ? { status: status as $Enums.OrderStatus } : {};
+    const where = status ? { status: status as OrderStatus } : {};
     const [orders, total] = await Promise.all([
         prisma.order.findMany({
             where,
@@ -169,7 +169,7 @@ export const updateOrderStatus = async (orderId: string, status: string) => {
     if (!order) throw createError("Order not found", 404);
     const updatedOrder = await prisma.order.update({
         where: { id: orderId },
-        data: { status: status as $Enums.OrderStatus },
+        data: { status: status as OrderStatus },
     });
 
     eventEmitter.emit("order.status.updated", { orderId, status: updatedOrder.status });

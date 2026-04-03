@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { $Enums, prisma } from "db";
+import { OrderStatus, prisma } from "db";
 import { asyncHandler } from "../../utils/asyncHandler";
 import { sendSuccess } from "../../utils/response";
 import {
@@ -106,7 +106,7 @@ export const getOrders = asyncHandler(async (req: Request, res: Response) => {
 });
 
 export const editOrderStatus = asyncHandler(async (req: Request, res: Response) => {
-    const status = req.body.status as $Enums.OrderStatus;
+    const status = req.body.status as OrderStatus;
     const order = await updateAdminOrderStatus(req.params.id!, status);
     sendSuccess(res, order, "Order status updated");
 });
