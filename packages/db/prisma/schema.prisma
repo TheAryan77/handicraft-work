@@ -67,6 +67,8 @@ model Product {
 
   images      ProductImage[]
   reviews     Review[]
+  cartItems   CartItem[]
+  orderItems  OrderItem[]
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
