@@ -57,6 +57,9 @@ app.use(
 app.use(globalRateLimiter);
 
 // ── Health check ─────────────────────────────────────────────────────────────
+app.get("/", (_req, res) => {
+    res.json({ success: true, message: "SN HandCrafts API is live!" });
+});
 app.get("/health", (_req, res) => {
     res.json({ status: "ok", timestamp: new Date().toISOString(), env: config.env });
 });
