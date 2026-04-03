@@ -27,6 +27,7 @@ model User {
   cart      Cart?
   addresses Address[]
   reviews   Review[]
+  wishlistItems WishlistItem[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -68,6 +69,7 @@ model Product {
   reviews     Review[]
   cartItems   CartItem[]
   orderItems  OrderItem[]
+  wishlistItems WishlistItem[]
 
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -103,6 +105,15 @@ model Order {
   totalAmount Float
   status      OrderStatus
   paymentStatus PaymentStatus
+
+  shippingName       String?
+  shippingPhone      String?
+  shippingLine1      String?
+  shippingLine2      String?
+  shippingCity       String?
+  shippingState      String?
+  shippingPostalCode String?
+  shippingCountry    String?
 
   items       OrderItem[]
   payment     Payment?
@@ -179,4 +190,17 @@ model Coupon {
   code        String   @unique
   discount    Float
   expiryDate  DateTime
+}
+
+model WishlistItem {
+  id        String   @id @default(uuid())
+  userId    String
+  productId String
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
 }
