@@ -172,12 +172,10 @@ model Review {
   user      User    @relation(fields: [userId], references: [id])
   product   Product @relation(fields: [productId], references: [id])
 }
+
 model Coupon {
   id          String   @id @default(uuid())
   code        String   @unique
   discount    Float
   expiryDate  DateTime
 }
-@@index([categoryId])
-@@index([userId])
-@@index([orderId])
