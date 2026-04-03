@@ -1,0 +1,191 @@
+/* ===================================================
+   Inner Pages (Products, Cart, etc.) — Pottery-Studio Theme
+   =================================================== */
+
+/* Page Header */
+.pageHeader {
+  position: relative;
+  background-color: var(--bg-dark);
+  color: var(--cream);
+  padding: 6rem 2rem 4rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.pageTitle {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin-bottom: var(--sp-sm);
+  color: var(--cream);
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-heading), 'Cormorant Garamond', Georgia, serif;
+}
+
+.pageSubtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Page Layout */
+.pageContent {
+  padding: var(--sp-xl) 0;
+  position: relative;
+  z-index: 2;
+  isolation: isolate;
+  background-color: var(--bg-primary);
+  flex: 1;
+}
+
+.pageContent > :not(.pattern2-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+.twoColumn {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: var(--sp-lg);
+}
+
+@media (max-width: 900px) {
+  .twoColumn {
+    grid-template-columns: 1fr;
+  }
+}
+
+.threeColumn {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--sp-lg);
+}
+
+@media (max-width: 900px) {
+  .threeColumn {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* UI Elements */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-md);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.cardTitle {
+  font-family: var(--font-heading), 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-sm);
+  border-bottom: 1.5px solid var(--linen);
+  padding-bottom: 0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--sp-md);
+}
+
+.productCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--sp-xs);
+  text-align: center;
+  transition: box-shadow var(--duration-slow) var(--ease-craft),
+    transform var(--duration-slow) var(--ease-craft);
+}
+
+.productCard:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+
+.productImage {
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: var(--linen);
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--sp-sm);
+  object-fit: cover;
+}
+
+.productName {
+  font-family: var(--font-heading), 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: var(--text-primary);
+}
+
+.productPrice {
+  color: var(--terracotta);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: var(--sp-sm);
+  font-family: var(--font-body), 'Inter', sans-serif;
+}
+
+/* Cart & Forms */
+.formGroup {
+  margin-bottom: var(--sp-md);
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body), 'Inter', sans-serif;
+  font-size: 0.9rem;
+  background-color: var(--cream);
+  color: var(--text-primary);
+  transition: border-color var(--duration-fast);
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--terracotta);
+}
+
+.flexBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.summaryTotal {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--linen);
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--terracotta);
+}
