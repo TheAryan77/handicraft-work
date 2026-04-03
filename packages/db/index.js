@@ -3,10 +3,16 @@ const { PrismaPg } = require("@prisma/adapter-pg");
 const prismaPackage = require("@prisma/client");
 
 const globalForPrisma = globalThis;
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl =
+    process.env.DATABASE_URL ||
+    process.env.POSTGRES_PRISMA_URL ||
+    process.env.POSTGRES_URL ||
+    process.env.POSTGRES_URL_NON_POOLING;
 
 if (!databaseUrl) {
-    throw new Error("DATABASE_URL is required to initialize Prisma.");
+    throw new Error(
+        "Missing database URL. Set one of: DATABASE_URL, POSTGRES_PRISMA_URL, POSTGRES_URL, POSTGRES_URL_NON_POOLING."
+    );
 }
 
 const adapter = new PrismaPg({ connectionString: databaseUrl });
