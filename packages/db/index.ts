@@ -19,11 +19,7 @@ if (!databaseUrl) {
 export const prisma =
     globalForPrisma.prisma ??
     new PrismaClient({
-        datasources: {
-            db: {
-                url: databaseUrl,
-            },
-        },
+        datasourceUrl: databaseUrl,
         errorFormat: "pretty",
     });
 
